@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pihole-deployment
-  namespace: pihole-system
+  namespace: pihole
   labels:
     app: pihole
 spec:
@@ -42,6 +42,9 @@ spec:
         ports:
         - name: web
           containerPort: 80
+        - name : dns
+          protocol : UDP
+          containerPort: 53
         volumeMounts:
         - name: pihole-adlists
           mountPath: /etc/pihole/adlists.list
